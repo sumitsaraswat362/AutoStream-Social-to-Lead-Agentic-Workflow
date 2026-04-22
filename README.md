@@ -10,7 +10,6 @@
 
 - [Quick Start](#-quick-start)
 - [Pre-Flight Checklist](#-pre-flight-checklist)
-- [Demo Video Script (2-3 min)](#-demo-video-script-2-3-min)
 - [Architecture](#-architecture)
 - [How It Works](#-how-it-works)
 - [RAG Implementation](#-rag-implementation)
