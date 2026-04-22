@@ -1,0 +1,82 @@
+{
+  "product": {
+    "name": "AutoStream",
+    "tagline": "Automated video editing tools for content creators",
+    "description": "AutoStream is a SaaS platform that provides AI-powered automated video editing tools designed specifically for content creators. From smart auto-cuts and transitions to AI-generated captions and thumbnails, AutoStream streamlines your entire content workflow so you can focus on creating, not editing."
+  },
+  "plans": [
+    {
+      "name": "Basic Plan",
+      "price": "$29/month",
+      "video_limit": "10 videos per month",
+      "resolution": "720p",
+      "features": [
+        "10 videos per month",
+        "720p resolution export",
+        "Basic video templates",
+        "Standard editing tools",
+        "Email support (business hours)",
+        "5GB cloud storage"
+      ]
+    },
+    {
+      "name": "Pro Plan",
+      "price": "$79/month",
+      "video_limit": "Unlimited videos",
+      "resolution": "4K",
+      "features": [
+        "Unlimited videos per month",
+        "4K resolution export",
+        "AI-powered automatic captions",
+        "Advanced editing suite",
+        "24/7 priority support",
+        "Custom branding and watermarks",
+        "Advanced analytics dashboard",
+        "50GB cloud storage",
+        "Priority rendering queue",
+        "Team collaboration (up to 5 members)"
+      ]
+    }
+  ],
+  "policies": {
+    "refund_policy": "Full refund available within 7 days of purchase. No refunds are processed after the 7-day window. To request a refund, contact support@autostream.io within the first 7 days.",
+    "support_policy": "Email support is available on all plans during business hours (Monday to Friday, 9 AM to 6 PM EST). 24/7 live chat and phone support is available exclusively on the Pro plan.",
+    "free_trial": "All new users get a 14-day free trial with full Pro plan features. No credit card required to start your trial.",
+    "cancellation": "You can cancel your subscription at any time from your account settings. Your access continues until the end of your current billing period. No cancellation fees apply.",
+    "data_retention": "After cancellation, your projects and data are retained for 30 days. After that period, all data is permanently deleted from our servers."
+  },
+  "faq": [
+    {
+      "question": "What are the pricing plans and how much does AutoStream cost?",
+      "answer": "AutoStream offers two pricing plans: the Basic Plan at $29/month (10 videos, 720p, 5GB storage, email support) and the Pro Plan at $79/month (unlimited videos, 4K, AI captions, 50GB storage, 24/7 support, team collaboration). All new users get a 14-day free trial of the Pro plan."
+    },
+    {
+      "question": "What video formats does AutoStream support?",
+      "answer": "AutoStream supports MP4, MOV, AVI, and WebM formats for both import and export. We recommend MP4 for the best balance of quality and file size."
+    },
+    {
+      "question": "Can I upgrade or downgrade my plan?",
+      "answer": "Yes, you can upgrade or downgrade your plan at any time from your account settings. Plan changes take effect at the start of your next billing cycle. If you upgrade mid-cycle, you will be charged a prorated amount for the remainder of the period."
+    },
+    {
+      "question": "Is there a free trial available?",
+      "answer": "Yes! All new users get a 14-day free trial with full access to Pro plan features. No credit card is required to get started."
+    },
+    {
+      "question": "What platforms can I publish to directly?",
+      "answer": "AutoStream supports direct publishing to YouTube, Instagram, TikTok, Twitter/X, and Facebook. More platform integrations are coming soon."
+    },
+    {
+      "question": "What are AI captions?",
+      "answer": "AI captions is a Pro plan exclusive feature that automatically generates accurate subtitles and closed captions for your videos using advanced speech recognition technology. It supports over 50 languages and can be customized for font, color, and positioning."
+    },
+    {
+      "question": "How does the team collaboration feature work?",
+      "answer": "Team collaboration is available on the Pro plan and allows up to 5 team members to work on projects together. Team members can edit, review, and comment on videos in real-time with role-based access controls."
+    },
+    {
+      "question": "What features does AutoStream offer?",
+      "answer": "AutoStream offers smart auto-cuts, AI transitions, AI-generated captions and thumbnails, custom branding, advanced analytics, direct publishing to social platforms, team collaboration, and cloud storage. The Pro plan unlocks all premium features including 4K output and priority rendering."
+    }
+  ]
+}
