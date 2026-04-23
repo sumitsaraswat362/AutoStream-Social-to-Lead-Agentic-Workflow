@@ -72,34 +72,20 @@ def _rate_limited_invoke(llm, messages):
     return llm.invoke(messages)
 
 
-def _get_llm(model_name: str = "gemini-1.5-flash"):
+def _get_llm():
     api_key = os.environ.get("GOOGLE_API_KEY")
     if not api_key:
         raise ValueError("Set GOOGLE_API_KEY environment variable.")
+
+    # Default model; override with GEMINI_MODEL if needed.
+    model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
     return ChatGoogleGenerativeAI(
-        model=model_name,
+        model=model,
         google_api_key=api_key,
         temperature=0.3,
         max_retries=0,
     )
 
-
-def _is_model_not_found_error(err: Exception) -> bool:
-    text = str(err)
-    return "NOT_FOUND" in text and "gemini-1.5-flash" in text
-
-
-def _get_compatible_llm() -> ChatGoogleGenerativeAI:
-    """
-    Some API keys do not expose Gemini 1.5 Flash anymore.
-    Keep assignment-default model in code, but provide a runtime-compatible fallback.
-    """
-    for candidate in ("models/gemini-2.0-flash", "models/gemini-2.5-flash-lite"):
-        try:
-            return _get_llm(candidate)
-        except Exception:
-            continue
-    return _get_llm()
 
 _kb = KnowledgeBase()
 
@@ -169,21 +155,8 @@ Return a JSON object matching this schema:
         ])
         raw = result.intent
     except Exception as e:
-        if _is_model_not_found_error(e):
-            try:
-                compat_llm = _get_compatible_llm()
-                structured_compat_llm = compat_llm.with_structured_output(IntentClassification)
-                result = _rate_limited_invoke(structured_compat_llm, [
-                    SystemMessage(content=system_prompt),
-                    HumanMessage(content=f"User message: \"{last_message}\""),
-                ])
-                raw = result.intent
-            except Exception as retry_error:
-                print(f"  [classify_intent] LLM fallback: {retry_error}")
-                raw = "product_inquiry"
-        else:
-            print(f"  [classify_intent] LLM fallback: {e}")
-            raw = "product_inquiry"
+        print(f"  [classify_intent] LLM fallback: {e}")
+        raw = "product_inquiry"
 
     # Normalize — default to product_inquiry for safety
     if raw not in {"greeting", "product_inquiry", "high_intent"}:
@@ -215,15 +188,7 @@ Be natural and conversational — not corporate. Use one emoji max. Keep it SHOR
         )
         response = _extract_text(result.content)
     except Exception as e:
-        if _is_model_not_found_error(e):
-            try:
-                llm = _get_compatible_llm()
-                result = _rate_limited_invoke(llm, [SystemMessage(content=system_prompt)] + state["messages"])
-                response = _extract_text(result.content)
-            except Exception as retry_error:
-                response = f"🚨 API ERROR: {str(retry_error)}"
-        else:
-            response = f"🚨 API ERROR: {str(e)}"
+        response = f"🚨 API ERROR: {str(e)}"
 
     return {
         "response": response,
@@ -258,15 +223,7 @@ RETRIEVED CONTEXT:
         )
         response_text = _extract_text(result.content)
     except Exception as e:
-        if _is_model_not_found_error(e):
-            try:
-                llm = _get_compatible_llm()
-                result = _rate_limited_invoke(llm, [SystemMessage(content=system_prompt)] + state["messages"])
-                response_text = _extract_text(result.content)
-            except Exception as retry_error:
-                response_text = f"🚨 API ERROR: {str(retry_error)}"
-        else:
-            response_text = f"🚨 API ERROR: {str(e)}"
+        response_text = f"🚨 API ERROR: {str(e)}"
 
     return {
         "response": response_text,
